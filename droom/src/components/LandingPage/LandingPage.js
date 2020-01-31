@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 const LandingPage = () => {
     return (
         <div>
-            <h1>Landing page</h1>
+            <h1>Droom</h1>
             <Link>Sign In</Link>
-            <Link to="/signupform" >Register</Link>
+            <h2>Register as a</h2>
+            <Link to="/seekeronboarding" >Job Seeker</Link>
+            <Link to="/companyonboarding" >Company</Link>
         </div>
-
     )
 }
 

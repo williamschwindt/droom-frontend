@@ -19,6 +19,7 @@ const CompanyOnboarding = ({ errors, touched, values, status }) => {
                 <Field name="bio" type="text" value={values.bio} placeholder="bio" ></Field>
                 {touched.bio && errors.bio && <p>{errors.bio}</p>}
 
+                <button type="submit">Submit</button>
             </Form>
         </div>
     )

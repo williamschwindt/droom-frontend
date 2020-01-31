@@ -22,6 +22,7 @@ const SeekerOnboarding = ({ errors, touched, values, status }) => {
                 <Field name="experience" type="text" value={values.experienceskills} placeholder="experience" ></Field>
                 {touched.experience && errors.experience && <p>{errors.experience}</p>}
 
+                <button type="submit">Submit</button>
             </Form>
         </div>
     )
