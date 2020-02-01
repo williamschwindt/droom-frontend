@@ -1,24 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Route } from 'react-router-dom';
+import LandingPage from './components/LandingPage/LandingPage';
+import FormikSeekerOnboarding from './components/SeekerOnboarding/SeekerOnboarding';
+import FormikCompanyOnboarding from './components/CompanyOnboarding/CompanyOnboarding';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Route exact path="/" component={LandingPage} />
+      <Route exact path="/seekeronboarding" component={FormikSeekerOnboarding} />
+      <Route exact path="/companyonboarding" component={FormikCompanyOnboarding} />
     </div>
   );
 }
