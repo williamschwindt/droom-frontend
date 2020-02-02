@@ -2,15 +2,13 @@ import React from 'react';
 import './App.css';
 import { Route } from 'react-router-dom';
 import LandingPage from './components/LandingPage/LandingPage';
-import FormikSeekerOnboarding from './components/SeekerOnboarding/SeekerOnboarding';
-import FormikCompanyOnboarding from './components/CompanyOnboarding/CompanyOnboarding';
+import FormikOnboarding from './components/Onboarding/Onboarding';
 
 function App() {
   return (
     <div className="App">
       <Route exact path="/" component={LandingPage} />
-      <Route exact path="/seekeronboarding" component={FormikSeekerOnboarding} />
-      <Route exact path="/companyonboarding" component={FormikCompanyOnboarding} />
+      <Route exact path="/onboarding" component={FormikOnboarding} />
     </div>
   );
 }

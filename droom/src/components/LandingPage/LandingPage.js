@@ -6,9 +6,7 @@ const LandingPage = () => {
         <div>
             <h1>Droom</h1>
             <Link>Sign In</Link>
-            <h2>Register as a</h2>
-            <Link to="/seekeronboarding" >Job Seeker</Link>
-            <Link to="/companyonboarding" >Company</Link>
+            <Link to="/onboarding" >Register</Link>
         </div>
     )
 }
