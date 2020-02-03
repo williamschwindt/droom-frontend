@@ -1,16 +1,13 @@
 import React from 'react';
-import {Route} from 'react-router-dom';
-import LoginForm from '../LoginForm/LoginForm.js';
-import SignUpForm from '../SignUpForm/SignUpForm.js';
+import { Link } from 'react-router-dom';
 
-function LandingPage() {
-  return (
-    <div className="">
-      <h1>Landing Page</h1>
-      <Route path="/LoginForm" component={LoginForm} />
-      <Route path="/SignupForm" component={SignUpForm} />
-    </div>
-  )
+const LandingPage = () => {
+    return (
+        <div>
+            <h1>Droom</h1>
+            <Link to="/LoginForm">Sign In</Link>
+        </div>
+    )
 }
 
 export default LandingPage;

@@ -1,62 +1,62 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {withFormik, Form, Field} from 'formik';
+import * as Yup from 'yup';
 
 const LoginForm = ({ errors, touched, values, status }) => {
-  const [users, setUsers] = useState([]);
+  const [user, setUser] = useState({
+    name: "",
+    password: "",
+    type: ""
+  });
+
+  console.log(user);
 
   useEffect(() => {
-    status && setUsers(users => [...users, status]);
-  }, [status]);
+    status && setUser(status);
+}, [status])
 
-function LoginForm() {
   return (
     <div>
       <h1>Login Form</h1>
-        <Form>
-          <Field 
-            id="username"
-            type="text"
-            name="username"
-            placeholder="Username"
-            values={values.username}
-          />
-          {touched.username && errors.username && <p>{errors.username}</p>}
+      <Form>
+        <Field name="name" type="text" value={values.name} placeholder="username" ></Field>
+        {touched.name && errors.name && <p>{errors.name}</p>}
 
-          <Field 
-            id="password"
-            type="text"
-            name="password"
-            placeholder="Password"
-            values={values.password}
-          />
-          {touched.password && errors.password && <p>{errors.password}</p>}
+        <Field name="password" type="text" value={values.password} placeholder="password" ></Field>
+        {touched.password && errors.password && <p>{errors.password}</p>}
 
-        <label>
-          Are you a Job Seeker?
-          <Field id="" type="checkbox" name="jobSeeker" values={values.jobSeeker} />
-        </label>
-        <label>
-          Or Employer?
-          <Field id="" type="checkbox" name="employer" values={values.employer} />
-        </label>
+        <Field name="type" component="select" value={values.type} >
+          <option>Choose user type</option>
+          <option>seeker</option>
+          <option>company</option>
+        </Field>
+        {touched.type && errors.type && <p>{errors.type}</p>}
 
         <button type="submit">Submit</button>
-        </Form>
+      </Form>
     </div>
-  );
-};
+  )
+}
 
-const FormikUserForm = withFormik({
-  mapPropsToValues({name, email, password, service }) {
+const FormikLoginForm = withFormik({
+  mapPropsToValues() {
     return {
-      username: username || "",
-      password: password || "",
-      jobSeeker: jobSeeker || false,
-      employer: employer || false
+      name: "",
+      password: "",
+      type: ""
     };
   },
 
-handleSubmit(values, {setStatus, resetForm}) {
-  console.log("Submitting form:", values);  
+  validationSchema: Yup.object().shape({
+    name: Yup.string().required("Username is required"),
+    password: Yup.string().required("Password required"),
+    type: Yup.string().oneOf(["company", "seeker"]).required("User type is required")
+}),
 
-export default LoginForm;
+
+  handleSubmit(values, {resetForm, setStatus}) {
+    console.log("Submitting form:", values);  
+  }
+})(LoginForm);
+
+export default FormikLoginForm;
