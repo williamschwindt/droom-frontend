@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './index.scss';
 import { Route } from 'react-router-dom';
 import LandingPage from './components/LandingPage/LandingPage';
 import FormikOnboarding from './components/Onboarding/Onboarding';
