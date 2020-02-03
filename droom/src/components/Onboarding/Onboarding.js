@@ -17,8 +17,9 @@ const Onboarding = ({ errors, touched, values, status }) => {
     }, [status])
 
     return (
-        <div>
-            <h1>Onboarding</h1>
+        <div className="onboarding">
+            <h1>Droom</h1>
+            <h2>Find Your Droom Job!</h2>
             <Form>
                 <Field name="name" type="text" value={values.name} placeholder="username" ></Field>
                 {touched.name && errors.name && <p>{errors.name}</p>}
@@ -27,13 +28,13 @@ const Onboarding = ({ errors, touched, values, status }) => {
                 {touched.password && errors.password && <p>{errors.password}</p>}
 
                 <Field name="type" component="select" value={values.type} >
-                    <option>Choose user type</option>
+                    <option id="placeholder">Register As</option>
                     <option>seeker</option>
                     <option>company</option>
                 </Field>
                 {touched.type && errors.type && <p>{errors.type}</p>}
 
-                <button type="submit">Submit</button>
+                <button type="submit">Register</button>
             </Form>
         </div>
     )

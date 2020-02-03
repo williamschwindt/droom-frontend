@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
     return (
-        <div>
+        <div className="landing-page" >
             <h1>Droom</h1>
-            <Link>Sign In</Link>
-            <Link to="/onboarding" >Register</Link>
+            <h2>Find Your Droom Job!</h2>
+            <div className="links">
+                <Link>Sign In</Link>
+                <Link to="/onboarding" >Register</Link>
+            </div>
         </div>
     )
 }
