@@ -14,7 +14,7 @@ const Onboarding = ({ errors, touched, values, status }) => {
 
     useEffect(() => {
         status && setUser(status);
-    }, [status])
+    }, [status]);
 
     return (
         <div className="onboarding">
