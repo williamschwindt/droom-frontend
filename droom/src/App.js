@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.scss';
+import './index.scss';
 import { Route } from 'react-router-dom';
 import LandingPage from './components/LandingPage/LandingPage';
 import FormikLoginForm from './components/LoginForm/LoginForm';

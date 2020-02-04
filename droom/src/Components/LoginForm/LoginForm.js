@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {withFormik, Form, Field} from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 
 const LoginForm = ({ errors, touched, values, status }) => {
   const [user, setUser] = useState({
@@ -22,7 +23,7 @@ const LoginForm = ({ errors, touched, values, status }) => {
         <Field name="name" type="text" value={values.name} placeholder="username" ></Field>
         {touched.name && errors.name && <p>{errors.name}</p>}
 
-        <Field name="password" type="text" value={values.password} placeholder="password" ></Field>
+        <Field name="password" type="password" value={values.password} placeholder="password" ></Field>
         {touched.password && errors.password && <p>{errors.password}</p>}
 
         <Field name="type" component="select" value={values.type} >
@@ -54,8 +55,18 @@ const FormikLoginForm = withFormik({
 }),
 
 
-  handleSubmit(values, {resetForm, setStatus}) {
+  handleSubmit(values, {resetForm, setStatus, setSubmitting}) {
     console.log("Submitting form:", values);  
+
+    // axios
+    //   .post("https://droom-node-server.herokuapp.com/api/login", values) 
+
+    //   .then(res => {
+    //     console.log(res.data);
+    //     resetForm();
+    //     setStatus(res.data);
+    //     setSubmitting(false);
+    // })
   }
 })(LoginForm);
 
