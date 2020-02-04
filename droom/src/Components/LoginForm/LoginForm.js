@@ -17,8 +17,10 @@ const LoginForm = ({ errors, touched, values, status }) => {
 }, [status])
 
   return (
-    <div>
-      <h1>Login Form</h1>
+    <div className="loginForm">
+      <h1>Droom</h1>
+      <h2>Find Your Droom Job!</h2>
+      
       <Form>
         <Field name="name" type="text" value={values.name} placeholder="username" ></Field>
         {touched.name && errors.name && <p>{errors.name}</p>}
@@ -58,15 +60,15 @@ const FormikLoginForm = withFormik({
   handleSubmit(values, {resetForm, setStatus, setSubmitting}) {
     console.log("Submitting form:", values);  
 
-    // axios
-    //   .post("https://droom-node-server.herokuapp.com/api/login", values) 
+    axios
+      .post("https://droom-node-server.herokuapp.com/api/login", values) 
 
-    //   .then(res => {
-    //     console.log(res.data);
-    //     resetForm();
-    //     setStatus(res.data);
-    //     setSubmitting(false);
-    // })
+      .then(res => {
+        console.log(res.data);
+        resetForm();
+        setStatus(res.data);
+        setSubmitting(false);
+    })
   }
 })(LoginForm);
 
