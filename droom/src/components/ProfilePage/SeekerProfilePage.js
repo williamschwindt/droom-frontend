@@ -16,7 +16,7 @@ const SeekerProfilePage = ({ errors, touched, values, status }) => {
     //will change this to get the id of the user that is signed in
     useEffect(() => {
         axios 
-        .get("https://droom-node-server.herokuapp.com/api/seekers/15")
+        .get("https://droom-node-server.herokuapp.com/api/seekers/5")
 
         .then(res => {
             console.log(res);
@@ -90,7 +90,7 @@ const FormikSeekerProfilePage = withFormik({
 
         //update the seeker
         axios 
-        .put("https://droom-node-server.herokuapp.com/api/seekers/15", values)
+        .put("https://droom-node-server.herokuapp.com/api/seekers/5", values)
 
         .then(res => {
             console.log(res);
