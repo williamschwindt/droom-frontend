@@ -1,0 +1,53 @@
+.seeker-profile-container {
+    margin: 0 auto;
+
+        nav {
+            background-color: #7851A9;
+            display: flex;
+            
+
+                h3 {
+                    color: #fff;
+                    font-size: 2rem;
+                    margin-left: 10px;
+                }
+
+                div {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+
+                    a {
+                        color: #fff;
+                        text-decoration: none;
+                        margin: 0 20px;
+                        font-size: 2rem;
+                    }
+                }
+        }
+
+        .seeker-profile {
+            margin: 50px auto;
+            background-color: #666;
+            width: 500px;
+            border-radius: 20px;
+
+            h1 {
+                margin-top: 30px;
+                font-size: 3.5rem;
+                color: #fff;
+            }
+    
+            .seeker-profile-info {
+                padding: 30px;
+
+                    h2 {
+                        color: #FFD893;
+                        font-size: 2rem;
+                    }
+            }
+        }
+
+
+}
+

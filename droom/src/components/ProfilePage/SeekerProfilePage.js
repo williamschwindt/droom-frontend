@@ -1,0 +1,107 @@
+import React, { useState, useEffect } from 'react';
+import { Form, Field, withFormik } from 'formik';
+import * as Yup from 'yup'; 
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+const SeekerProfilePage = ({ errors, touched, values, status }) => {
+    const [seeker, setSeeker] = useState({
+        name: "",
+        password: "",
+        area: "",
+        skills: "",
+        experience: ""
+    });
+
+    //will change this to get the id of the user that is signed in
+    useEffect(() => {
+        axios 
+        .get("https://droom-node-server.herokuapp.com/api/seekers/15")
+
+        .then(res => {
+            console.log(res);
+            setSeeker(res.data);
+        })
+
+        .catch(err => {
+            console.log(err);
+        })
+    }, [])
+
+    return (
+        <div className="seeker-profile-container" >
+            <nav>
+                <h3>Droom</h3>
+                <div>
+                    <Link to="/seekerprofile">Profile</Link>
+                    <Link to="/matches">Matches</Link>
+                    <Link to="/home">Home</Link>
+                </div>
+            </nav>
+
+            <div className="seeker-profile" >
+                <h1>Your Profile</h1>
+
+                <div className="seeker-profile-info" >
+                    <h2>Username: {seeker.name}</h2>
+                    <h2>Location: {seeker.area}</h2>
+                    <h2>Skills: {seeker.skills}</h2>
+                    <h2>Experience: {seeker.experience}</h2>
+                </div>
+            </div>
+
+            <Form className="form">
+                <Field className="input" name="name" type="text" value={values.name} placeholder="username" ></Field>
+                {touched.name && errors.name && <p>{errors.name}</p>}
+
+                <Field className="input" name="area" type="text" value={values.area} placeholder="location" ></Field>
+                {touched.location && errors.location && <p>{errors.location}</p>}
+
+                <Field className="input" name="skills" type="text" value={values.skills} placeholder="skills" ></Field>
+                {touched.skills && errors.skills && <p>{errors.skills}</p>}
+
+                <Field className="input" name="experience" type="text" value={values.experience} placeholder="experience" ></Field>
+                {touched.experience && errors.experience && <p>{errors.experience}</p>}
+
+                <button className="button" type="submit">Update</button>
+            </Form>
+        </div>
+    )
+}
+
+const FormikSeekerProfilePage = withFormik({
+    mapPropsToValues() {
+        return {
+            name: "",
+            area: "",
+            skills: "",
+            experience: ""
+        };
+    },
+
+    validationSchema: Yup.object().shape({
+        area: Yup.string().required("Location is required"),
+        skills: Yup.string().required("Skills are required"),
+        experience: Yup.string().required("Experience is required")
+    }),
+
+    handleSubmit(values, { resetForm, setStatus }) {
+        console.log("Seeker form values ", values);
+
+        //update the seeker
+        axios 
+        .put("https://droom-node-server.herokuapp.com/api/seekers/15", values)
+
+        .then(res => {
+            console.log(res);
+            
+        })
+
+        .catch(err => {
+            console.log(err);
+        })
+    }
+
+})(SeekerProfilePage);
+
+export default FormikSeekerProfilePage;
