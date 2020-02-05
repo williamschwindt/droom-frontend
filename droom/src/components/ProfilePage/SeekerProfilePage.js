@@ -92,6 +92,7 @@ const FormikSeekerProfilePage = withFormik({
     },
 
     validationSchema: Yup.object().shape({
+        name: Yup.string().required("Name is required"),
         location: Yup.string().required("Location is required"),
         skills: Yup.string().required("Skills are required"),
         experience: Yup.string().required("Experience is required")
@@ -100,7 +101,6 @@ const FormikSeekerProfilePage = withFormik({
     handleSubmit(values, { resetForm, setStatus }) {
         console.log("Seeker form values ", values);
 
-        //update the seeker
         axios 
         .put("https://droom-node-server.herokuapp.com/api/seekers/5", values)
 
@@ -109,7 +109,6 @@ const FormikSeekerProfilePage = withFormik({
             setStatus(true);
             setStatus(res.data);
             resetForm();
-            
         })
 
         .catch(err => {
