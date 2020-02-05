@@ -8,7 +8,7 @@ const SeekerProfilePage = ({ errors, touched, values, status }) => {
     const [seeker, setSeeker] = useState({
         name: "",
         password: "",
-        area: "",
+        location: "",
         skills: "",
         experience: ""
     });
@@ -17,7 +17,11 @@ const SeekerProfilePage = ({ errors, touched, values, status }) => {
 
     useEffect(() => {
         status && setUpdateForm(status);
-    }, [status])
+    }, [status]);
+
+    useEffect(() => {
+        status && setSeeker(status);
+    }, [status]);
 
     //will change this to get the id of the user that is signed in
     useEffect(() => {
@@ -50,7 +54,7 @@ const SeekerProfilePage = ({ errors, touched, values, status }) => {
 
                 <div className="seeker-profile-info" >
                     <h2>Username: {seeker.name}</h2>
-                    <h2>Location: {seeker.area}</h2>
+                    <h2>Location: {seeker.location}</h2>
                     <h2>Skills: {seeker.skills}</h2>
                     <h2>Experience: {seeker.experience}</h2>
                 </div>
@@ -62,7 +66,7 @@ const SeekerProfilePage = ({ errors, touched, values, status }) => {
                 <Field className="input" name="name" type="text" value={values.name} placeholder="username" ></Field>
                 {touched.name && errors.name && <p>{errors.name}</p>}
 
-                <Field className="input" name="area" type="text" value={values.area} placeholder="location" ></Field>
+                <Field className="input" name="location" type="text" value={values.location} placeholder="location" ></Field>
                 {touched.location && errors.location && <p>{errors.location}</p>}
 
                 <Field className="input" name="skills" type="text" value={values.skills} placeholder="skills" ></Field>
@@ -81,14 +85,14 @@ const FormikSeekerProfilePage = withFormik({
     mapPropsToValues() {
         return {
             name: "",
-            area: "",
+            location: "",
             skills: "",
             experience: ""
         };
     },
 
     validationSchema: Yup.object().shape({
-        area: Yup.string().required("Location is required"),
+        location: Yup.string().required("Location is required"),
         skills: Yup.string().required("Skills are required"),
         experience: Yup.string().required("Experience is required")
     }),
@@ -103,7 +107,8 @@ const FormikSeekerProfilePage = withFormik({
         .then(res => {
             console.log(res);
             setStatus(true);
-            resetForm()
+            setStatus(res.data);
+            resetForm();
             
         })
 
