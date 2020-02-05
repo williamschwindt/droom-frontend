@@ -55,7 +55,7 @@ const FormikOnboarding = withFormik({
         type: Yup.string().oneOf(["company", "seeker"]).required("User type is required")
     }),
 
-    handleSubmit(values, { resetForm, setStatus }) {
+    handleSubmit(values, { resetForm, setStatus, props }) {
         console.log("Form Values ", values);
 
         axios
@@ -65,6 +65,8 @@ const FormikOnboarding = withFormik({
                 console.log(res.data);
                 resetForm();
                 setStatus(res.data);
+                props.history.push('/LoginForm');
+                
             })
     }
 })(Onboarding);
