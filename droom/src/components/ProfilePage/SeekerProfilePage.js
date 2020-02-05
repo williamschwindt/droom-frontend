@@ -13,6 +13,12 @@ const SeekerProfilePage = ({ errors, touched, values, status }) => {
         experience: ""
     });
 
+    const [updateForm, setUpdateForm] = useState(true);
+
+    useEffect(() => {
+        status && setUpdateForm(status);
+    }, [status])
+
     //will change this to get the id of the user that is signed in
     useEffect(() => {
         axios 
@@ -50,7 +56,9 @@ const SeekerProfilePage = ({ errors, touched, values, status }) => {
                 </div>
             </div>
 
-            <Form className="form">
+            <button className={`update-btn ${!updateForm ? 'hidden' : ''}`} onClick={() => setUpdateForm(!updateForm)} >Update Profile</button>
+
+            <Form className={`form ${updateForm ? 'hidden' : ''}`}>
                 <Field className="input" name="name" type="text" value={values.name} placeholder="username" ></Field>
                 {touched.name && errors.name && <p>{errors.name}</p>}
 
@@ -94,6 +102,8 @@ const FormikSeekerProfilePage = withFormik({
 
         .then(res => {
             console.log(res);
+            setStatus(true);
+            resetForm()
             
         })
 
