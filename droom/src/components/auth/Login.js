@@ -22,30 +22,33 @@ class Login extends Component {
     });
   }
 
-  handleSubmit(event) {
-    const { email, password } = this.state;
+  // handleSubmit(event) {
+  //   const { email, password } = this.state;
 
-    axios
-      .post(
-        "https://droom-node-server.herokuapp.com/api/login",
-        {
-          user: {
-            email: email,
-            password: password
-          }
-        },
-        { withCredentials: true }
-      )
-      .then(response => {
-        if (response.data.logged_in) {
-          this.props.handleSuccessfulAuth(response.data);
-        }
-      })
-      .catch(error => {
-        console.log("login error", error);
-      });
-    event.preventDefault();
-  }
+  //   axios
+  //     .post(
+  //       "https://droom-node-server.herokuapp.com/api/login",
+  //       {
+  //         user: {
+  //           email: email,
+  //           password: password
+  //         }
+  //       },
+  //       { withCredentials: true }
+  //     )
+  //     .then(response => {
+  //       if (response.data.logged_in) {
+  //         this.props.handleSuccessfulAuth(response.data);
+  //       } 
+  //       console.log(response);
+  //       localStorage.setItem(response.token);
+        
+  //     })
+  //     .catch(error => {
+  //       console.log("login error", error);
+  //     });
+  //   event.preventDefault();
+  // }
 }
 
 export default Login;

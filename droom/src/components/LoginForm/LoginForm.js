@@ -10,7 +10,7 @@ const LoginForm = ({ errors, touched, values, status }) => {
     type: ""
   });
 
-  console.log(user);
+  // console.log(user);
 
   useEffect(() => {
     status && setUser(status);
@@ -64,6 +64,8 @@ const FormikLoginForm = withFormik({
       .post("https://droom-node-server.herokuapp.com/api/login", values) 
 
       .then(res => {
+        console.log(res);
+        localStorage.setItem("token", res.data.token);
         resetForm();
         setStatus(res.data);
         setSubmitting(false);
