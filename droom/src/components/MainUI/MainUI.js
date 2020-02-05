@@ -8,9 +8,10 @@ const MainUI = (props) => {
             <h2>Find Your Droom Job!</h2>
 
             <nav>
-                <Link to="/profile" />
-                <Link to="/matches" />
-                <Link to="/home" />
+                <h3>Droom</h3>
+                <Link to="/seekerprofile">Profile</Link>
+                <Link to="/matches">Matches</Link>
+                <Link to="/home">Home</Link>
             </nav>
 
             
