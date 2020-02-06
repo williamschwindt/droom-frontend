@@ -5,7 +5,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 import FormikLoginForm from './components/LoginForm/LoginForm';
 import FormikOnboarding from './components/Onboarding/Onboarding';
 import SeekerProfilePage from './components/ProfilePage/SeekerProfilePage';
-import MainUI from './components/MainUI/MainUI';
+import SeekerMainUI from './components/MainUI/SeekerMainUI';
 import MatchesPage from './components/MatchesPages/MatchesPage';
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
       <Route exact path="/LoginForm" component={FormikLoginForm} />
       <Route exact path="/onboarding" component={FormikOnboarding} />
       <Route exact path ="/seekerprofile" component ={SeekerProfilePage} />
-      <Route exact path ="/home" component ={MainUI} />
+      <Route exact path ="/home" component ={SeekerMainUI} />
       <Route exact path ="/matches" component ={MatchesPage} />
     </div>
   );
