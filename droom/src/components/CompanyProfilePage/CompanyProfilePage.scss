@@ -76,4 +76,35 @@
       cursor: pointer;
     }
   }
+  .input {
+    display: flex;
+    transition: .3s;
+    outline: none;
+    background-color: #666666;
+    color: #EEE;
+    width: 300px;
+    margin: 10px auto;
+    font-size: 2rem;
+    border-radius: 20px;
+    padding: 10px 15px;
+    border: 2px solid #49157D;
+  }
+
+  input::placeholder {
+    color: #999999;
+  }
+
+  .button {
+    outline: none;
+    transition: .3s;
+    font-size: 2rem;
+    color: #fff;
+    width: 150px;
+    margin: 20px auto;
+    background-color: #DAA443;
+    border: 2px solid #49157D;
+    border-radius: 20px;
+    padding: 5px 5px;
+  }
+
 }
