@@ -62,8 +62,7 @@ const FormikOnboarding = withFormik({
             .post("https://droom-node-server.herokuapp.com/api/register", values) 
 
             .then(res => {
-                console.log(res);
-                localStorage.getItem("token");
+                console.log(res.data);
                 resetForm();
                 setStatus(res.data);
                 props.history.push('/LoginForm');

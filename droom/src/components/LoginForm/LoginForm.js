@@ -68,7 +68,7 @@ const FormikLoginForm = withFormik({
         localStorage.setItem("token", res.data.token);
         resetForm();
         setStatus(res.data);
-        props.history.push('/CompanyMainUI')
+        props.history.push(`/${values.type}mainui`);
     })
   }
 })(LoginForm);
