@@ -18,16 +18,16 @@ function App() {
   return (
     <div className="App">
       <Route exact path="/" component={LandingPage} />
-      <Route exact path="/LoginForm" component={FormikLoginForm} />
+      <Route exact path="/loginform" component={FormikLoginForm} />
       <Route exact path="/onboarding" component={FormikOnboarding} />
 
       <ProtectedRoute exact path ="/CompanyProfilePage" component={CompanyProfilePage} />
-      <ProtectedRoute exact path ="/CompanyMainUI" component={CompanyMainUI} />
-      <ProtectedRoute exact path ="/CompanyMatchesPage" component={CompanyMatchesPage} />
+      <ProtectedRoute exact path ="/companymainui" component={CompanyMainUI} />
+      <ProtectedRoute exact path ="/companymatchespage" component={CompanyMatchesPage} />
 
       <ProtectedRoute exact path ="/seekerprofile" component ={SeekerProfilePage} />
-      <ProtectedRoute exact path ="/seekerhome" component ={SeekerMainUI} />
-      <ProtectedRoute exact path ="/matches" component ={SeekerMatchesPage} />
+      <ProtectedRoute exact path ="/seekermainui" component ={SeekerMainUI} />
+      <ProtectedRoute exact path ="/seekermatchespage" component ={SeekerMatchesPage} />
     </div>
   );
 }
