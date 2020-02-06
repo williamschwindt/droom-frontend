@@ -21,11 +21,11 @@ function App() {
       <Route exact path="/loginform" component={FormikLoginForm} />
       <Route exact path="/onboarding" component={FormikOnboarding} />
 
-      <ProtectedRoute exact path ="/CompanyProfilePage" component={CompanyProfilePage} />
+      <ProtectedRoute exact path ="/companyprofilepage" component={CompanyProfilePage} />
       <ProtectedRoute exact path ="/companymainui" component={CompanyMainUI} />
       <ProtectedRoute exact path ="/companymatchespage" component={CompanyMatchesPage} />
 
-      <ProtectedRoute exact path ="/seekerprofile" component ={SeekerProfilePage} />
+      <ProtectedRoute exact path ="/seekerprofilepage" component ={SeekerProfilePage} />
       <ProtectedRoute exact path ="/seekermainui" component ={SeekerMainUI} />
       <ProtectedRoute exact path ="/seekermatchespage" component ={SeekerMatchesPage} />
     </div>

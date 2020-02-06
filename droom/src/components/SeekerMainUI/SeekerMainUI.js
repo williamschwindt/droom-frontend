@@ -5,7 +5,7 @@ import axios from 'axios';
 const SeekerMainUI = () => {
     const [jobs, setJobs] = useState([]);
     const [savedJob, setSavedJob] = useState({
-        id: null,
+        job_id: null,
         name: "",
         location: "",
         description: "",
@@ -33,10 +33,17 @@ const SeekerMainUI = () => {
     
     const clickHandler = (e) => {
         let id = e.target.value;
-        setSavedJob(jobs[id-1]);
+        let theJob = jobs[id-1];
+        setSavedJob({
+            job_id: theJob.id,
+            name: theJob.name,
+            location: theJob.location,
+            description: theJob.description,
+            company_id: theJob.company_id
+        });
     
         axios
-        .post(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`, savedJob.id, savedJob.name, savedJob.location, savedJob.description, savedJob.company_id)
+        .post(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`, savedJob.job_id, savedJob.name, savedJob.location, savedJob.description, savedJob.company_id)
     
         .then(res => {
             console.log(res.message);
@@ -52,9 +59,9 @@ const SeekerMainUI = () => {
             <nav>
                 <h3>Droom</h3>
                 <div>
-                    <Link to="/seekerprofile">Profile</Link>
-                    <Link to="/matches">Matches</Link>
-                    <Link to="/seekerhome">Home</Link>
+                    <Link to="/seekerprofilepage">Profile</Link>
+                    <Link to="/seekermatchespage">Matches</Link>
+                    <Link to="/seekermainui">Home</Link>
                 </div>
             </nav>
 

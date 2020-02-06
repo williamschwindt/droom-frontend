@@ -65,7 +65,7 @@ const FormikOnboarding = withFormik({
                 console.log(res.data);
                 resetForm();
                 setStatus(res.data);
-                props.history.push('/LoginForm');
+                props.history.push('/loginform');
                 localStorage.setItem("userid", res.data.id);
             })
     }
