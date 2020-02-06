@@ -25,8 +25,9 @@ const SeekerProfilePage = ({ errors, touched, values, status }) => {
 
     //will change this to get the id of the user that is signed in
     useEffect(() => {
+        const userID = localStorage.getItem("userid");
         axios 
-        .get("https://droom-node-server.herokuapp.com/api/seekers/5")
+        .get(`https://droom-node-server.herokuapp.com/api/seekers/${userID}`)
 
         .then(res => {
             console.log(res);
