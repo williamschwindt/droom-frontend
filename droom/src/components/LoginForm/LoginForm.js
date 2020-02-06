@@ -10,7 +10,7 @@ const LoginForm = ({ errors, touched, values, status }) => {
     type: ""
   });
 
-  // console.log(user);
+  console.log(user);
 
   useEffect(() => {
     status && setUser(status);
@@ -57,7 +57,7 @@ const FormikLoginForm = withFormik({
 }),
 
 
-  handleSubmit(values, {resetForm, setStatus, setSubmitting}) {
+  handleSubmit(values, {resetForm, setStatus, props}) {
     console.log("Submitting form:", values);  
 
     axios
@@ -68,7 +68,7 @@ const FormikLoginForm = withFormik({
         localStorage.setItem("token", res.data.token);
         resetForm();
         setStatus(res.data);
-        setSubmitting(false);
+        props.history.push('/CompanyMainUI')
     })
   }
 })(LoginForm);
