@@ -25,8 +25,9 @@ const SeekerProfilePage = ({ errors, touched, values, status }) => {
 
     //will change this to get the id of the user that is signed in
     useEffect(() => {
+        const userID = localStorage.getItem("userid");
         axios 
-        .get("https://droom-node-server.herokuapp.com/api/seekers/5")
+        .get(`https://droom-node-server.herokuapp.com/api/seekers/${userID}`)
 
         .then(res => {
             console.log(res);
@@ -92,6 +93,7 @@ const FormikSeekerProfilePage = withFormik({
     },
 
     validationSchema: Yup.object().shape({
+        name: Yup.string().required("Name is required"),
         location: Yup.string().required("Location is required"),
         skills: Yup.string().required("Skills are required"),
         experience: Yup.string().required("Experience is required")
@@ -100,7 +102,6 @@ const FormikSeekerProfilePage = withFormik({
     handleSubmit(values, { resetForm, setStatus }) {
         console.log("Seeker form values ", values);
 
-        //update the seeker
         axios 
         .put("https://droom-node-server.herokuapp.com/api/seekers/5", values)
 
@@ -109,7 +110,6 @@ const FormikSeekerProfilePage = withFormik({
             setStatus(true);
             setStatus(res.data);
             resetForm();
-            
         })
 
         .catch(err => {
