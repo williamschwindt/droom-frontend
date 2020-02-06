@@ -1,3 +1,4 @@
+import React from 'react';
 import './index.scss';
 import { Route } from 'react-router-dom';
 import ProtectedRoute from './components/Utils/ProtectedRoute';
