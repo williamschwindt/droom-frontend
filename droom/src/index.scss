@@ -1,8 +1,14 @@
 @import "App";
-@import "./components/Onboarding/Onboarding.scss";
 @import "./components/LandingPage/LandingPage.scss";
+
+@import "./components/Onboarding/Onboarding.scss";
 @import "./components/LoginForm/LoginForm.scss";
 
 @import "./components/CompanyMainUI/CompanyMainUI.scss";
 @import "./components/CompanyProfilePage/CompanyProfilePage.scss";
 @import "./components/CompanyMatchesPage/CompanyMatchesPage.scss"; 
+
+@import "./components/SeekerMainUI/SeekerMainUI.scss";
+@import "./components/SeekerProfilePage/SeekerProfilePage.scss";
+@import "./components/SeekerMatchesPage/SeekerMatchesPage.scss";
+
