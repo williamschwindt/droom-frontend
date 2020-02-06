@@ -5,9 +5,9 @@ import ProtectedRoute from './components/Utils/ProtectedRoute';
 import LandingPage from './components/LandingPage/LandingPage';
 import FormikLoginForm from './components/LoginForm/LoginForm';
 import FormikOnboarding from './components/Onboarding/Onboarding';
-import SeekerProfilePage from './components/ProfilePage/SeekerProfilePage';
-import SeekerMainUI from './components/MainUI/SeekerMainUI';
-import MatchesPage from './components/MatchesPages/MatchesPage';
+import SeekerProfilePage from './components/SeekerProfilePage/SeekerProfilePage';
+import SeekerMainUI from './components/SeekerMainUI/SeekerMainUI';
+import SeekerMatchesPage from './components/SeekerMatchesPage/SeekerMatchesPage';
 
 function App() {
   return (
@@ -16,8 +16,8 @@ function App() {
       <Route exact path="/LoginForm" component={FormikLoginForm} />
       <Route exact path="/onboarding" component={FormikOnboarding} />
       <ProtectedRoute exact path ="/seekerprofile" component ={SeekerProfilePage} />
-      <ProtectedRoute exact path ="/home" component ={SeekerMainUI} />
-      <ProtectedRoute exact path ="/matches" component ={MatchesPage} />
+      <ProtectedRoute exact path ="/seekerhome" component ={SeekerMainUI} />
+      <ProtectedRoute exact path ="/matches" component ={SeekerMatchesPage} />
     </div>
   );
 }

@@ -46,7 +46,7 @@ const SeekerProfilePage = ({ errors, touched, values, status }) => {
                 <div>
                     <Link to="/seekerprofile">Profile</Link>
                     <Link to="/matches">Matches</Link>
-                    <Link to="/home">Home</Link>
+                    <Link to="/seekerhome">Home</Link>
                 </div>
             </nav>
 

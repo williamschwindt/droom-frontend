@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const MatchesPage = () => {
+const SeekerMatchesPage = () => {
     return (
         <div className="matches-page-container">
             <nav>
@@ -9,7 +9,7 @@ const MatchesPage = () => {
                 <div>
                     <Link to="/seekerprofile">Profile</Link>
                     <Link to="/matches">Matches</Link>
-                    <Link to="/home">Home</Link>
+                    <Link to="/seekerhome">Home</Link>
                 </div>
             </nav>
 
@@ -18,4 +18,4 @@ const MatchesPage = () => {
     )
 }
 
-export default MatchesPage;
+export default SeekerMatchesPage;
