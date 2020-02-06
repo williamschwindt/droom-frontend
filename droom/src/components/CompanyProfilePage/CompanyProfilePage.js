@@ -41,9 +41,9 @@ const CompanyProfilePage = ({ errors, touched, values, status }) => {
       <nav>
         <h3>Droom</h3>
         <div>
-          <Link to="/CompanyProfilePage">Profile</Link>
-          <Link to="/CompanyMatchesPage">Matches</Link>
-          <Link to="/CompanyMainUI">Home</Link>
+          <Link to="/companyprofilepage">Profile</Link>
+          <Link to="/companymatchespage">Matches</Link>
+          <Link to="/companymainui">Home</Link>
         </div>
       </nav>
 

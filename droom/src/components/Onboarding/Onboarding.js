@@ -20,21 +20,21 @@ const Onboarding = ({ errors, touched, values, status }) => {
         <div className="onboarding">
             <h1>Droom</h1>
             <h2>Find Your Droom Job!</h2>
-            <Form>
-                <Field name="name" type="text" value={values.name} placeholder="username" ></Field>
+            <Form className="form onboarding-form">
+                <Field className="input" name="name" type="text" value={values.name} placeholder="username" ></Field>
                 {touched.name && errors.name && <p>{errors.name}</p>}
 
-                <Field name="password" type="text" value={values.password} placeholder="password" ></Field>
+                <Field className="input" name="password" type="text" value={values.password} placeholder="password" ></Field>
                 {touched.password && errors.password && <p>{errors.password}</p>}
 
-                <Field name="type" component="select" value={values.type} >
+                <Field className="select" name="type" component="select" value={values.type} >
                     <option id="placeholder">Register As</option>
                     <option>seeker</option>
                     <option>company</option>
                 </Field>
                 {touched.type && errors.type && <p>{errors.type}</p>}
 
-                <button type="submit">Register</button>
+                <button className="button" type="submit">Register</button>
             </Form>
         </div>
     )
@@ -55,17 +55,18 @@ const FormikOnboarding = withFormik({
         type: Yup.string().oneOf(["company", "seeker"]).required("User type is required")
     }),
 
-    handleSubmit(values, { resetForm, setStatus }) {
+    handleSubmit(values, { resetForm, setStatus, props }) {
         console.log("Form Values ", values);
 
         axios
             .post("https://droom-node-server.herokuapp.com/api/register", values) 
 
             .then(res => {
-                console.log(res);
-                localStorage.getItem("token");
+                console.log(res.data);
                 resetForm();
                 setStatus(res.data);
+                props.history.push('/loginform');
+                localStorage.setItem("userid", res.data.id);
             })
     }
 })(Onboarding);
