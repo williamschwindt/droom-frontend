@@ -23,8 +23,9 @@ const CompanyProfilePage = ({ errors, touched, values, status }) => {
     }, [status]);
 
     useEffect(() => {
+      const LS = localStorage.getItem("userid");
       axios 
-      .get("https://droom-node-server.herokuapp.com/api/companies/4") ////<<<< Change companies:id
+      .get(`https://droom-node-server.herokuapp.com/api/companies/${LS}`)
 
       .then(res => {
         console.log(res);
@@ -94,8 +95,9 @@ const CompanyProfilePage = ({ errors, touched, values, status }) => {
     handleSubmit(values, { resetForm, setStatus}) {
       console.log("Company form values", values);
 
+      const LS = localStorage.getItem("userid");
       axios
-        .put("https://droom-node-server.herokuapp.com/api/companies/4", values) ////<<<< Change companies:id
+        .put("https://droom-node-server.herokuapp.com/api/companies/${LS}", values)
 
         .then(res => {
           console.log(res);
