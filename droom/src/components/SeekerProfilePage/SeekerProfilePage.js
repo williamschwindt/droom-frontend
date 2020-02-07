@@ -3,6 +3,7 @@ import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup'; 
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { axiosWithAuth }  from '../Utils/axiosWithAuth';
 
 const SeekerProfilePage = ({ errors, touched, values, status }) => {
     const [seeker, setSeeker] = useState({
@@ -102,11 +103,10 @@ const FormikSeekerProfilePage = withFormik({
         console.log("Seeker form values ", values);
 
         const userID = localStorage.getItem("userid");
-        axios 
+        axiosWithAuth()
         .put(`https://droom-node-server.herokuapp.com/api/seekers/${userID}`, values)
 
         .then(res => {
-            localStorage.getItem("token");
             console.log(res);
             setStatus(true);
             setStatus(res.data);
