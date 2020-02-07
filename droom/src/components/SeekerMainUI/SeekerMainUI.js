@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const SeekerMainUI = () => {
     const [jobs, setJobs] = useState([]);
+    const [card, setCard] = useState(false);
     const [savedJob, setSavedJob] = useState({
         job_id: null,
         name: "",
@@ -74,12 +75,12 @@ const SeekerMainUI = () => {
                 <div className="jobs">
                     {jobs.map(job => {
                         return (
-                            <div key={job.id} className="job-card">
+                            <div key={job.id} className={`${card ? 'hidden' : ''} job-card`}>
                                 <h1>{job.name}</h1>
                                 <h2>{job.location}</h2>
                                 <p>{job.description}</p>
                                 <div>
-                                    <button>X</button>
+                                    <button value={job.id} onClick={() => setCard(!card)} >X</button>
                                     <button value={job.id} onClick={(e) => ClickHandler(e)}>Save</button>
                                 </div>
                             </div>
