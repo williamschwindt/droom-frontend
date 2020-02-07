@@ -43,14 +43,15 @@ const SeekerMainUI = () => {
         });
     
         axios
-        .post(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`, savedJob.job_id, savedJob.name, savedJob.location, savedJob.description, savedJob.company_id)
+        .post(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`,
+        savedJob)
     
         .then(res => {
-            console.log(res.message);
+            console.log(res);
         }) 
     
         .catch(err => {
-            console.log(err);
+            console.log(err.message);
         })
     }
         
