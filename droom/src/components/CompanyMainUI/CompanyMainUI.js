@@ -2,9 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const CompanyMainUI = (props) => {
+const CompanyMainUI = () => {
   const [seekers, setSeekers] = useState([]);
+  const [card, setCard] = useState(false);
+  const [savedSeekers, setSavedSeekers] = useState({
+    name: "",
+    location: "",
+  })
 
+  console.log(savedSeekers);
   console.log(seekers);
 
   useEffect(() => {
@@ -20,6 +26,32 @@ const CompanyMainUI = (props) => {
         console.log(err);
       })
   }, [])
+
+  const userID = localStorage.getItem("userid");
+
+  useEffect(() => {
+    axios
+      .post(`https://droom-node-server.herokuapp.com/api/companies/${userID}/saved`, savedSeekers)
+
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err.message);
+    })
+  }, [savedSeekers, userID])
+
+  const ClickHandler = (e) => {
+    const seekerID = e.target.value;
+    console.log(seekerID);
+    const theSeeker = seekers[seekerID - 1];
+    console.log(theSeeker);
+    setSavedSeekers({
+    seeker_id: theSeeker.id,
+    name: theSeeker.name,
+    location: theSeeker.location
+  });
+}  
 
   return (
     <div className="company-main-ui-container">
@@ -37,12 +69,12 @@ const CompanyMainUI = (props) => {
         <div className="jobs">
           {seekers.map(seekers => {
             return (
-              <div key={seekers.id} className="job-card">
+              <div key={seekers.id} className={`${card ? 'hidden' : ''} job-card`}>
                 <h1>{seekers.name}</h1>
                 <h2>{seekers.location}</h2>
                 <div>
-                  <button>X</button>
-                  <button>Save</button>
+                  <button value={seekers.id} onClick={() => setCard(!card)} >X</button>
+                  <button value={seekers.id} onClick={(e) => ClickHandler(e)}>Save</button>
                 </div>
               </div>
             )

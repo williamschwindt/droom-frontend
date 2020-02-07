@@ -1,7 +1,45 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const CompanyMatchesPage = () => {
+  const [savedSeekers, setSavedSeekers] = useState([])
+  console.log(savedSeekers);
+
+  useEffect(() => {
+      const userID = localStorage.getItem("userid");
+      axios 
+      .get(`https://droom-node-server.herokuapp.com/api/companies/${userID}/saved`)
+
+      .then(res => {
+          console.log(res);
+          setSavedSeekers(res.data);
+      })
+
+      .catch(err => {
+          console.log(err);
+      })
+  }, []);
+
+  const handleDelete = (e) => {
+      let id = e.target.value;
+
+      let updatedList = savedSeekers.filter(seeker => seeker.seeker_id !== id);
+      setSavedSeekers(updatedList); 
+
+      const userID = localStorage.getItem("userid");
+      axios
+      .delete(`https://droom-node-server.herokuapp.com/api/companies/${userID}/saved/${id}`)
+
+      .then(res => {
+          console.log(res);
+      }) 
+
+      .catch(err => {
+          console.log(err.message);
+      })
+  }
+
   return (
     <div className="company-matches-page-container">
       <nav>
@@ -12,6 +50,24 @@ const CompanyMatchesPage = () => {
           <Link to="/companymainui">Home</Link>
         </div>
       </nav>
+
+
+      <div className="company-matches-page">
+      <h1>Your Saved Employees</h1>
+        <div className="seekers">
+          {savedSeekers.map(seeker => {
+            return (
+              <div key={seeker.seeker_id} className="seeker-card">
+                <h1>{seeker.seeker_name}</h1>
+                <h2>{seeker.seeker_location}</h2>
+                <div>
+                  <button value={seeker.seeker_id} onClick={(e) => handleDelete(e)}>X</button>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
 
 
     </div>
