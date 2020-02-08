@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const SeekerMainUI = () => {
     const [jobs, setJobs] = useState([]);
+    const [card, setCard] = useState(false);
     const [savedJob, setSavedJob] = useState({
         job_id: null,
         name: "",
@@ -30,21 +31,10 @@ const SeekerMainUI = () => {
     }, [])
 
     const userID = localStorage.getItem("userid");
-    
-    const clickHandler = (e) => {
-        let id = e.target.value;
-        let theJob = jobs[id-1];
-        setSavedJob({
-            job_id: theJob.id,
-            name: theJob.name,
-            location: theJob.location,
-            description: theJob.description,
-            company_id: theJob.company_id
-        });
-    
+
+    useEffect(() => {
         axios
-        .post(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`,
-        savedJob)
+        .post(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`, savedJob)
     
         .then(res => {
             console.log(res);
@@ -53,6 +43,20 @@ const SeekerMainUI = () => {
         .catch(err => {
             console.log(err.message);
         })
+    }, [savedJob, userID])
+    
+    const ClickHandler = (e) => {
+        const jobID = e.target.value;
+        console.log(jobID);
+        const theJob = jobs[jobID - 1];
+        console.log(theJob);
+        setSavedJob({
+            job_id: theJob.id,
+            name: theJob.name,
+            location: theJob.location,
+            description: theJob.description,
+            company_id: theJob.company_id
+        });
     }
         
     return (
@@ -71,13 +75,13 @@ const SeekerMainUI = () => {
                 <div className="jobs">
                     {jobs.map(job => {
                         return (
-                            <div key={job.id} className="job-card">
+                            <div key={job.id} className={`${card ? 'hidden' : ''} job-card`}>
                                 <h1>{job.name}</h1>
                                 <h2>{job.location}</h2>
                                 <p>{job.description}</p>
                                 <div>
-                                    <button>X</button>
-                                    <button value={job.id} onClick={(e) => clickHandler(e)}>Save</button>
+                                    <button value={job.id} onClick={() => setCard(!card)} >X</button>
+                                    <button value={job.id} onClick={(e) => ClickHandler(e)}>Save</button>
                                 </div>
                             </div>
                         )

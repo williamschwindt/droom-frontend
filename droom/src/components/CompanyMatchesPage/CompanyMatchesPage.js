@@ -24,7 +24,7 @@ const CompanyMatchesPage = () => {
   const handleDelete = (e) => {
       let id = e.target.value;
 
-      let updatedList = savedSeekers.filter(seeker => seeker.seeker_id !== id);
+      let updatedList = savedSeekers.filter(seekers => seekers.seekerss_id !== id);
       setSavedSeekers(updatedList); 
 
       const userID = localStorage.getItem("userid");
@@ -55,13 +55,13 @@ const CompanyMatchesPage = () => {
       <div className="company-matches-page">
       <h1>Your Saved Employees</h1>
         <div className="seekers">
-          {savedSeekers.map(seeker => {
+          {savedSeekers.map(seekers => {
             return (
-              <div key={seeker.seeker_id} className="seeker-card">
-                <h1>{seeker.seeker_name}</h1>
-                <h2>{seeker.seeker_location}</h2>
+              <div key={seekers.seekers_id} className="seeker-card">
+                <h1>{seekers.seekers_name}</h1>
+                <h2>{seekers.seekers_location}</h2>
                 <div>
-                  <button value={seeker.seeker_id} onClick={(e) => handleDelete(e)}>X</button>
+                  <button value={seekers.seekers_id} onClick={(e) => handleDelete(e)}>X</button>
                 </div>
               </div>
             )

@@ -4,8 +4,8 @@ import axios from 'axios';
 
 const CompanyMainUI = () => {
   const [seekers, setSeekers] = useState([]);
-  const [card, setCard] = useState(false);
   const [savedSeekers, setSavedSeekers] = useState({
+    seekers_id: null,
     name: "",
     location: "",
   })
@@ -47,11 +47,20 @@ const CompanyMainUI = () => {
     const theSeeker = seekers[seekerID - 1];
     console.log(theSeeker);
     setSavedSeekers({
-    seeker_id: theSeeker.id,
+    seekers_id: theSeeker.id,
     name: theSeeker.name,
     location: theSeeker.location
   });
 }  
+
+const handleDelete = (e) => {
+  const id = e.target.value;
+  const index = id -1;
+  const newSeekers = seekers.filter(seekers => {
+    return seekers.id - 1 !== index;
+  });
+  setSeekers(newSeekers);
+}
 
   return (
     <div className="company-main-ui-container">
@@ -69,11 +78,11 @@ const CompanyMainUI = () => {
         <div className="jobs">
           {seekers.map(seekers => {
             return (
-              <div key={seekers.id} className={`${card ? 'hidden' : ''} job-card`}>
+              <div key={seekers.id} className="job-card">
                 <h1>{seekers.name}</h1>
                 <h2>{seekers.location}</h2>
                 <div>
-                  <button value={seekers.id} onClick={() => setCard(!card)} >X</button>
+                  <button value={seekers.id} onClick={(e) => handleDelete(e)} >X</button>
                   <button value={seekers.id} onClick={(e) => ClickHandler(e)}>Save</button>
                 </div>
               </div>
