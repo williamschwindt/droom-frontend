@@ -57,6 +57,15 @@ const SeekerMainUI = () => {
             company_id: theJob.company_id
         });
     }
+
+    const handleDelete = (e) => {
+        const id = e.target.value;
+        const index = id - 1;
+        const newJobs = jobs.filter(job => {
+            return job.id - 1 !== index;
+        });
+        setJobs(newJobs);
+    }
         
     return (
         <div className="main-ui-container">
@@ -79,7 +88,7 @@ const SeekerMainUI = () => {
                                 <h2>{job.location}</h2>
                                 <p>{job.description}</p>
                                 <div>
-                                    <button>X</button>
+                                    <button value={job.id} onClick={(e) => handleDelete(e)} >X</button>
                                     <button value={job.id} onClick={(e) => ClickHandler(e)}>Save</button>
                                 </div>
                             </div>
