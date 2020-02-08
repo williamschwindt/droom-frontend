@@ -22,6 +22,10 @@
     padding: 100px auto;
     display: flex;
     flex-direction: column;
+
+    h1 {
+        font-size: 2rem;
+    }
     
     .input,
     .select {
@@ -50,24 +54,40 @@
     .select::placeholder {
         color: #999999;
     }
-        
-    .button {
-        outline: none;
-        transition: .3s;
-        font-size: 2rem;
-        color: #fff;
-        width: 100px;
-        margin: 20px auto;
-        background-color: #DAA443;
-        border: 2px solid #49157D;
-        border-radius: 20px;
-        padding: 5px 5px;
 
-            &:hover {
-                transition: .3s;
-                background-color: #F9C76C;
-                cursor: pointer;
-            }
+    div {
+        display: flex;
+        justify-content: center;
+
+        .button {
+            outline: none;
+            transition: .3s;
+            font-size: 2rem;
+            color: #fff;
+            width: 100px;
+            margin: 20px;
+            background-color: #DAA443;
+            border: 2px solid #49157D;
+            border-radius: 20px;
+            padding: 5px 5px;
+    
+                &:hover {
+                    transition: .3s;
+                    background-color: #F9C76C;
+                    cursor: pointer;
+                }
+        }
+
+        p {
+            font-size: 2rem;
+            color: #fff;
+            margin: 20px;
+
+                a {
+                    text-decoration: none;
+                    color: #F9C76C;
+                }
+        }
     }
         
     .p {
