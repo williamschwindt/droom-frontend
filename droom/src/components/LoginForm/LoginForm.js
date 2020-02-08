@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {withFormik, Form, Field} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const LoginForm = ({ errors, touched, values, status }) => {
   const [user, setUser] = useState({
@@ -22,6 +23,7 @@ const LoginForm = ({ errors, touched, values, status }) => {
       <h2>Find Your Droom Job!</h2>
       
       <Form>
+      <h1>Please Sign In</h1>
         <Field name="name" type="text" value={values.name} placeholder="username" ></Field>
         {touched.name && errors.name && <p>{errors.name}</p>}
 
@@ -35,7 +37,10 @@ const LoginForm = ({ errors, touched, values, status }) => {
         </Field>
         {touched.type && errors.type && <p>{errors.type}</p>}
 
+        <div>
+        <p>Not A Member <Link to="/onboarding">Sign Up</Link></p>
         <button type="submit">Submit</button>
+        </div>
       </Form>
     </div>
   )

@@ -61,7 +61,7 @@ const SeekerProfilePage = ({ errors, touched, values, status }) => {
                 </div>
             </div>
 
-            <button className={`update-btn ${!updateForm ? 'hidden' : ''}`} onClick={() => setUpdateForm(!updateForm)} >Update Profile</button>
+            <button className={`button ${!updateForm ? 'hidden' : ''}`} onClick={() => setUpdateForm(!updateForm)} >Update Profile</button>
 
             <Form className={`form ${updateForm ? 'hidden' : ''}`}>
                 <Field className="input" name="name" type="text" value={values.name} placeholder="username" ></Field>

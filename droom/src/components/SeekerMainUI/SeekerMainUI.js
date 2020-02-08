@@ -11,9 +11,9 @@ const SeekerMainUI = () => {
         description: "",
         company_id: null
     });
-    console.log(savedJob);
+    console.log("Saved Jobs ", savedJob);
 
-    console.log(jobs);
+    console.log("Jobs ", jobs);
 
     useEffect(() => {
         axios
