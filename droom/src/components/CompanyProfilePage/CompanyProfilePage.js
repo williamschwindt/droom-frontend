@@ -3,6 +3,7 @@ import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup'; 
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { axiosWithAuth } from '../Utils/axiosWithAuth';
 
 const CompanyProfilePage = ({ errors, touched, values, status }) => {
   const [ company, setCompany] = useState({
@@ -96,8 +97,8 @@ const CompanyProfilePage = ({ errors, touched, values, status }) => {
       console.log("Company form values", values);
 
       const LS = localStorage.getItem("userid");
-      axios
-        .put("https://droom-node-server.herokuapp.com/api/companies/${LS}", values)
+      axiosWithAuth()
+        .put(`https://droom-node-server.herokuapp.com/api/companies/${LS}`, values)
 
         .then(res => {
           console.log(res);
