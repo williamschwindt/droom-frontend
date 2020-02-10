@@ -4,13 +4,14 @@ import axios from 'axios';
 
 const CompanyMainUI = () => {
   const [seekers, setSeekers] = useState([]);
-  const [savedSeekers, setSavedSeekers] = useState({
-    seekers_id: null,
-    name: "",
-    location: "",
+  const [savedSeeker, setSavedSeeker] = useState({
+    seeker_id: null,
+    seeker_name: "",
+    seeker_location: "",
+    seeker_skills: ""
   })
 
-  console.log(savedSeekers);
+  console.log(savedSeeker);
   console.log(seekers);
 
   useEffect(() => {
@@ -29,29 +30,31 @@ const CompanyMainUI = () => {
 
   const userID = localStorage.getItem("userid");
 
-  useEffect(() => {
-    axios
-      .post(`https://droom-node-server.herokuapp.com/api/companies/${userID}/saved`, savedSeekers)
-
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err.message);
-    })
-  }, [savedSeekers, userID])
 
   const ClickHandler = (e) => {
+
+    axios
+        .post(`https://droom-node-server.herokuapp.com/api/companies/${userID}/saved`, savedSeeker)
+
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err.message);
+      })
+
     const seekerID = e.target.value;
     console.log(seekerID);
-    const theSeeker = seekers[seekerID - 1];
+    const theSeeker = seekers[seekerID - 299];
     console.log(theSeeker);
-    setSavedSeekers({
-    seekers_id: theSeeker.id,
-    name: theSeeker.name,
-    location: theSeeker.location
-  });
-}  
+
+    setSavedSeeker({
+    seeker_id: theSeeker.id,
+    seeker_name: theSeeker.name,
+    seeker_location: theSeeker.location,
+    seeker_skills: theSeeker.skills
+    });
+  }  
 
 const handleDelete = (e) => {
   const id = e.target.value;
@@ -61,6 +64,8 @@ const handleDelete = (e) => {
   });
   setSeekers(newSeekers);
 }
+
+console.log(savedSeeker);
 
   return (
     <div className="company-main-ui-container">
