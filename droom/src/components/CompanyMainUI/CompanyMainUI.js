@@ -29,18 +29,6 @@ const CompanyMainUI = () => {
 
   const userID = localStorage.getItem("userid");
 
-  useEffect(() => {
-    axios
-      .post(`https://droom-node-server.herokuapp.com/api/companies/${userID}/saved`, savedSeeker)
-
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err.message);
-    })
-  }, [savedSeeker, userID])
-
   const ClickHandler = (e) => {
     const seekerID = e.target.value;
     console.log(seekerID);
@@ -48,10 +36,20 @@ const CompanyMainUI = () => {
     console.log(theSeeker);
 
     setSavedSeeker({
-    seeker_id: theSeeker.id,
-    seeker_name: theSeeker.name,
-    seeker_location: theSeeker.location
+      seeker_id: theSeeker.id,
+      seeker_name: theSeeker.name,
+      seeker_location: theSeeker.location
     });
+
+    axios
+    .post(`https://droom-node-server.herokuapp.com/api/companies/${userID}/saved`, savedSeeker)
+
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err.message);
+  })
   }  
 
 const handleDelete = (e) => {
