@@ -1,20 +1,9 @@
-  
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const SeekerMainUI = () => {
     const [jobs, setJobs] = useState([]);
-    const [savedJob, setSavedJob] = useState({
-        job_id: null,
-        name: "",
-        location: "",
-        description: "",
-        company_id: null
-    });
-    console.log("Saved Jobs ", savedJob);
-
-    console.log("Jobs ", jobs);
 
     useEffect(() => {
         axios
@@ -34,19 +23,17 @@ const SeekerMainUI = () => {
     
     const ClickHandler = (e) => {
         const jobID = e.target.value;
-        console.log(jobID);
         const theJob = jobs[jobID - 1];
-        console.log(theJob);
-        setSavedJob({
+        const theSavedJob = {
             job_id: theJob.id,
             name: theJob.name,
             location: theJob.location,
             description: theJob.description,
             company_id: theJob.company_id
-        });
+        };
 
         axios
-        .post(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`, savedJob)
+        .post(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`, theSavedJob)
     
         .then(res => {
             console.log(res);
@@ -76,7 +63,6 @@ const SeekerMainUI = () => {
                     <Link to="/seekermainui">Home</Link>
                 </div>
             </nav>
-
             <div className="main-ui">
                 <h1>Find Jobs</h1>
                 <div className="jobs">
@@ -95,8 +81,6 @@ const SeekerMainUI = () => {
                     })}
                 </div>
             </div>
-
-            
         </div>
     )
 }
