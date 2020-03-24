@@ -4,13 +4,7 @@ import axios from 'axios';
 
 const CompanyMainUI = () => {
   const [seekers, setSeekers] = useState([]);
-  const [savedSeeker, setSavedSeeker] = useState({
-    seeker_id: null,
-    seeker_name: "",
-    seeker_location: "",
-  })
 
-  console.log(savedSeeker);
   console.log(seekers);
 
   useEffect(() => {
@@ -35,11 +29,11 @@ const CompanyMainUI = () => {
     const theSeeker = seekers[seekerID - 299];
     console.log(theSeeker);
 
-    setSavedSeeker({
+    const savedSeeker = {
       seeker_id: theSeeker.id,
       seeker_name: theSeeker.name,
       seeker_location: theSeeker.location
-    });
+    };
 
     axios
     .post(`https://droom-node-server.herokuapp.com/api/companies/${userID}/saved`, savedSeeker)
@@ -50,7 +44,7 @@ const CompanyMainUI = () => {
     .catch(err => {
       console.log(err.message);
   })
-  }  
+}  
 
 const handleDelete = (e) => {
   const id = e.target.value;
