@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import CompanyNavBar from '../NavBar/CompanyNavBar';
 
 const CompanyMatchesPage = () => {
   const [savedSeekers, setSavedSeekers] = useState([])
@@ -42,16 +42,7 @@ const CompanyMatchesPage = () => {
 
   return (
     <div className="company-matches-page-container">
-      <nav>
-        <h3>Droom</h3>
-        <div>
-          <Link to="/companyprofilepage">Profile</Link>
-          <Link to="/companymatchespage">Matches</Link>
-          <Link to="/companymainui">Home</Link>
-        </div>
-      </nav>
-
-
+      <CompanyNavBar savedSeekers={savedSeekers.length}/>
       <div className="company-matches-page">
       <h1>Your Saved Employees</h1>
         <div className="seekers">

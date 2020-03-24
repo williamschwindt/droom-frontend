@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import CompanyNavBar from '../NavBar/CompanyNavBar';
 
 const CompanyMainUI = () => {
   const [seekers, setSeekers] = useState([]);
+  const [savedSeekers, setSavedSeekers] = useState(0);
 
   console.log(seekers);
 
@@ -14,6 +15,7 @@ const CompanyMainUI = () => {
       .then(res => {
         console.log(res);
         setSeekers(res.data);
+        findNumberOfSavedSeekers();
       })
 
       .catch(err => {
@@ -40,32 +42,32 @@ const CompanyMainUI = () => {
 
     .then(res => {
       console.log(res);
+      findNumberOfSavedSeekers();
     })
     .catch(err => {
       console.log(err.message);
-  })
-}  
+    })
+  }  
 
-const handleDelete = (e) => {
-  const id = e.target.value;
-  const index = id -1;
-  const newSeekers = seekers.filter(seekers => {
-    return seekers.id - 1 !== index;
-  });
-  setSeekers(newSeekers);
-}
+  const handleDelete = (e) => {
+    const id = e.target.value;
+    const index = id -1;
+    const newSeekers = seekers.filter(seekers => {
+      return seekers.id - 1 !== index;
+    });
+    setSeekers(newSeekers);
+  }
+
+  const findNumberOfSavedSeekers = () => {
+    axios.get(`https://droom-node-server.herokuapp.com/api/companies/${userID}/saved`)
+    .then(res => {
+      setSavedSeekers(res.data.length);
+    })
+  }
 
   return (
     <div className="company-main-ui-container">
-      <nav>
-        <h3>Droom</h3>
-        <div>
-          <Link to="/companyprofilepage">Profile</Link>
-          <Link to="/companymatchespage">Matches</Link>
-          <Link to="/companymainui">Home</Link>
-        </div>
-      </nav>
-
+      <CompanyNavBar savedSeekers={savedSeekers}/>
       <div className="company-main-ui">
         <h1>Find Employees</h1>
         <div className="jobs">

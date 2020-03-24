@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup'; 
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { axiosWithAuth } from '../Utils/axiosWithAuth';
+import CompanyNavBar from '../NavBar/CompanyNavBar';
 
 const CompanyProfilePage = ({ errors, touched, values, status }) => {
   const [ company, setCompany] = useState({
@@ -12,6 +12,7 @@ const CompanyProfilePage = ({ errors, touched, values, status }) => {
     location: "",
     bio: ""
   });
+  const [savedSeekers, setSavedSeekers] = useState(0);
 
   const [updateForm, setUpdateForm] = useState(true);
 
@@ -23,10 +24,11 @@ const CompanyProfilePage = ({ errors, touched, values, status }) => {
       status && setCompany(status);
     }, [status]);
 
+    const userID = localStorage.getItem("userid");
+
     useEffect(() => {
-      const LS = localStorage.getItem("userid");
       axios 
-      .get(`https://droom-node-server.herokuapp.com/api/companies/${LS}`)
+      .get(`https://droom-node-server.herokuapp.com/api/companies/${userID}`)
 
       .then(res => {
         console.log(res);
@@ -38,17 +40,16 @@ const CompanyProfilePage = ({ errors, touched, values, status }) => {
     })
   }, [])
 
+  useEffect(() => {
+    axios.get(`https://droom-node-server.herokuapp.com/api/companies/${userID}/saved`)
+    .then(res => {
+      setSavedSeekers(res.data.length);
+    })
+  }, [])
+
   return (
     <div className="company-profile-container" >
-      <nav>
-        <h3>Droom</h3>
-        <div>
-          <Link to="/companyprofilepage">Profile</Link>
-          <Link to="/companymatchespage">Matches</Link>
-          <Link to="/companymainui">Home</Link>
-        </div>
-      </nav>
-
+      <CompanyNavBar savedSeekers={savedSeekers}/>
       <div className="company-profile">
         <h1>Your Profile</h1>
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'; 
 import axios from 'axios';
-import NavBar from '../NavBar/NavBar';
+import SeekerNavBar from '../NavBar/SeekerNavBar';
 
 const SeekerMainUI = () => {
     const [jobs, setJobs] = useState([]);
@@ -68,7 +68,7 @@ const SeekerMainUI = () => {
         
     return (
         <div className="main-ui-container">
-            <NavBar savedJobs={savedJobs}/>
+            <SeekerNavBar savedJobs={savedJobs}/>
             <div className="main-ui">
                 <h1>Find Jobs</h1>
                 <div className="jobs">

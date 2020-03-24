@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { axiosWithAuth }  from '../Utils/axiosWithAuth';
-import NavBar from '../NavBar/NavBar';
+import SeekerNavBar from '../NavBar/SeekerNavBar';
 
 const SeekerProfilePage = ({ errors, touched, values, status }) => {
     const [seeker, setSeeker] = useState({
@@ -47,11 +47,11 @@ const SeekerProfilePage = ({ errors, touched, values, status }) => {
             .then(res => {
                 setNumberOfSavedJobs(res.data.length);
             })
-    })
+    }, [])
 
     return (
         <div className="seeker-profile-container" >
-            <NavBar savedJobs={numberOfSavedJobs}/>
+            <SeekerNavBar savedJobs={numberOfSavedJobs}/>
             <div className="seeker-profile" >
                 <h1>Your Profile</h1>
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import NavBar from '../NavBar/NavBar';
+import SeekerNavBar from '../NavBar/SeekerNavBar';
 
 const SeekerMatchesPage = () => {
     const [savedJobs, setSavedJobs] = useState([])
@@ -42,7 +42,7 @@ const SeekerMatchesPage = () => {
 
     return (
         <div className="matches-page-container">
-            <NavBar savedJobs={savedJobs.length}/>
+            <SeekerNavBar savedJobs={savedJobs.length}/>
             <div className="seeker-matches-page">
             <h1>Your Saved Jobs</h1>
                 <div className="jobs">
