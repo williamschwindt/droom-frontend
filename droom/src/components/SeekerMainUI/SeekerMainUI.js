@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const SeekerMainUI = () => {
     const [jobs, setJobs] = useState([]);
+    const [ savedJobs, setSavedJobs ] = useState(0);
 
     useEffect(() => {
         axios
@@ -37,6 +38,10 @@ const SeekerMainUI = () => {
     
         .then(res => {
             console.log(res);
+            axios.get(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`)
+            .then(res => {
+                setSavedJobs(res.data.length);
+            })
         }) 
     
         .catch(err => {
