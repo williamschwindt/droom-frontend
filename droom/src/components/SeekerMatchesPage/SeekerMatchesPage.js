@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import NavBar from '../NavBar/NavBar';
 
 const SeekerMatchesPage = () => {
     const [savedJobs, setSavedJobs] = useState([])
-    console.log(savedJobs);
 
     useEffect(() => {
         const userID = localStorage.getItem("userid");
@@ -42,15 +42,7 @@ const SeekerMatchesPage = () => {
 
     return (
         <div className="matches-page-container">
-            <nav>
-                <h3>Droom</h3>
-                <div>
-                    <Link to="/seekerprofilepage">Profile</Link>
-                    <Link to="/seekermatchespage">Matches</Link>
-                    <Link to="/seekermainui">Home</Link>
-                </div>
-            </nav>
-
+            <NavBar savedJobs={savedJobs.length}/>
             <div className="seeker-matches-page">
             <h1>Your Saved Jobs</h1>
                 <div className="jobs">

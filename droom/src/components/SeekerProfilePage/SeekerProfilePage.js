@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { axiosWithAuth }  from '../Utils/axiosWithAuth';
+import NavBar from '../NavBar/NavBar';
 
 const SeekerProfilePage = ({ errors, touched, values, status }) => {
     const [seeker, setSeeker] = useState({
@@ -13,6 +14,7 @@ const SeekerProfilePage = ({ errors, touched, values, status }) => {
         skills: "",
         experience: ""
     });
+    const [numberOfSavedJobs, setNumberOfSavedJobs] = useState(0);
 
     const [updateForm, setUpdateForm] = useState(true);
 
@@ -24,8 +26,9 @@ const SeekerProfilePage = ({ errors, touched, values, status }) => {
         status && setSeeker(status);
     }, [status]);
 
+    const userID = localStorage.getItem("userid");
+
     useEffect(() => {
-        const userID = localStorage.getItem("userid");
         axios 
         .get(`https://droom-node-server.herokuapp.com/api/seekers/${userID}`)
 
@@ -39,17 +42,16 @@ const SeekerProfilePage = ({ errors, touched, values, status }) => {
         })
     }, [])
 
+    useEffect(() => {
+        axios.get(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`)
+            .then(res => {
+                setNumberOfSavedJobs(res.data.length);
+            })
+    })
+
     return (
         <div className="seeker-profile-container" >
-            <nav>
-                <h3>Droom</h3>
-                <div>
-                    <Link to="/seekerprofilepage">Profile</Link>
-                    <Link to="/seekermatchespage">Matches</Link>
-                    <Link to="/seekermainui">Home</Link>
-                </div>
-            </nav>
-
+            <NavBar savedJobs={numberOfSavedJobs}/>
             <div className="seeker-profile" >
                 <h1>Your Profile</h1>
 
