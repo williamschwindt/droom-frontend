@@ -9,7 +9,7 @@ const SeekerMatchesPage = () => {
     useEffect(() => {
         const userID = localStorage.getItem("userid");
         axios 
-        .get(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`)
+        .get(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`) 
 
         .then(res => {
             console.log(res);

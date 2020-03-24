@@ -60,7 +60,7 @@ const SeekerMainUI = () => {
     }
 
     const findNumberOfSavedJobs = () => {
-        axios.get(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`)
+        axios.get(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`) 
         .then(res => {
             setSavedJobs(res.data.length);
         })

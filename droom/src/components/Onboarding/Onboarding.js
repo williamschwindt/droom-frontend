@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Field, withFormik } from 'formik';
+import { Form, Field, withFormik, Formik } from 'formik';
 import * as Yup from 'yup'; 
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -10,12 +10,30 @@ const Onboarding = ({ errors, touched, values, status }) => {
         password: "",
         type: ""
     });
+    const [signingUp, setSigningUp] = useState(false);
 
     console.log(user); 
 
     useEffect(() => {
         status && setUser(status);
     }, [status]);
+
+    if(status) {
+        return(
+            <div className="onboarding">
+                <h1>Droom</h1>
+                <h2>Find Your Droom Job!</h2>
+                <Form className="form onboarding-form">
+                    <div class="lds-ring">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </Form>
+            </div>
+        )
+    }
 
     return (
         <div className="onboarding">
@@ -62,6 +80,8 @@ const FormikOnboarding = withFormik({
 
     handleSubmit(values, { resetForm, setStatus, props }) {
         console.log("Form Values ", values);
+
+        setStatus(true);
 
         axios
             .post("https://droom-node-server.herokuapp.com/api/register", values) 

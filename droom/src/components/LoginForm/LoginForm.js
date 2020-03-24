@@ -15,7 +15,25 @@ const LoginForm = ({ errors, touched, values, status }) => {
 
   useEffect(() => {
     status && setUser(status);
-}, [status])
+  }, [status])
+
+  if(status) {
+    return(
+      <div className="loginForm">
+      <h1>Droom</h1>
+      <h2>Find Your Droom Job!</h2>
+      
+      <Form>
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </Form>
+    </div>
+    )
+  }
 
   return (
     <div className="loginForm">
@@ -63,7 +81,9 @@ const FormikLoginForm = withFormik({
 
 
   handleSubmit(values, {resetForm, setStatus, props}) {
-    console.log("Submitting form:", values);  
+    console.log("Submitting form:", values);
+
+    setStatus(true);
 
     axios
       .post("https://droom-node-server.herokuapp.com/api/login", values) 
