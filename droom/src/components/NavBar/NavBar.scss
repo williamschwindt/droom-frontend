@@ -4,9 +4,9 @@ nav {
     
 
         h3 {
+            width: 200px;
             color: #fff;
             font-size: 2rem;
-            margin-left: 10px;
         }
 
         div {
@@ -26,5 +26,20 @@ nav {
                         color: #FFD893;
                     }
             }
+        }
+
+        button {
+            transition: .3s;
+            width: 200px;
+            color: #fff;
+            font-size: 2rem;
+            background-color: #7851A9;
+            border: none;
+
+                &:hover {
+                    transition: .3s;
+                    cursor: pointer;
+                    color: #FFD893;
+                }
         }
 }

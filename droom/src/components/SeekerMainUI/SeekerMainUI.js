@@ -6,6 +6,8 @@ const SeekerMainUI = () => {
     const [jobs, setJobs] = useState([]);
     const [ savedJobs, setSavedJobs ] = useState(0);
 
+    console.log("ls", localStorage)
+
     useEffect(() => {
         axios
         .get("https://droom-node-server.herokuapp.com/api/jobs")
