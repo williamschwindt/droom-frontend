@@ -13,11 +13,8 @@ const LoginForm = ({ errors, touched, values, status }) => {
 
   console.log(user);
 
-  useEffect(() => {
-    status && setUser(status);
-  }, [status])
 
-  if(status) {
+  if(status == true) {
     return(
       <div className="loginForm">
       <h1>Droom</h1>
@@ -32,6 +29,36 @@ const LoginForm = ({ errors, touched, values, status }) => {
         </div>
       </Form>
     </div>
+    )
+  }
+  
+  if(status === "error") {
+    return (
+      <div className="loginForm">
+        <h1>Droom</h1>
+        <h2>Find Your Droom Job!</h2>
+        
+        <Form>
+        <h1>There Was A Problem, Please Try Again</h1>
+          <Field name="name" type="text" value={values.name} placeholder="username" ></Field>
+          {touched.name && errors.name && <p>{errors.name}</p>}
+
+          <Field name="password" type="password" value={values.password} placeholder="password" ></Field>
+          {touched.password && errors.password && <p>{errors.password}</p>}
+
+          <Field name="type" component="select" value={values.type} >
+            <option>Choose user type</option>
+            <option>seeker</option>
+            <option>company</option>
+          </Field>
+          {touched.type && errors.type && <p>{errors.type}</p>}
+
+          <div>
+          <p>Not A Member <Link to="/onboarding">Sign Up</Link></p>
+          <button type="submit">Submit</button>
+          </div>
+        </Form>
+      </div>
     )
   }
 
@@ -94,7 +121,10 @@ const FormikLoginForm = withFormik({
         resetForm();
         setStatus(res.data);
         props.history.push(`/${values.type}mainui`);
-    })
+      })
+      .catch(() => {
+        setStatus("error");
+      })
   }
 })(LoginForm);
 
