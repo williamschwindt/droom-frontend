@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import SeekerNavBar from '../NavBar/SeekerNavBar';
 
 const SeekerMatchesPage = () => {
     const [savedJobs, setSavedJobs] = useState([])
+    const userID = localStorage.getItem("userid");
 
     useEffect(() => {
-        const userID = localStorage.getItem("userid");
         axios 
         .get(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`) 
 
@@ -19,7 +18,7 @@ const SeekerMatchesPage = () => {
         .catch(err => {
             console.log(err);
         })
-    }, []);
+    }, [userID]);
 
     const handleDelete = (e) => {
         let id = e.target.value;
@@ -27,7 +26,6 @@ const SeekerMatchesPage = () => {
         let updatedList = savedJobs.filter(job => job.job_id !== id);
         setSavedJobs(updatedList); 
    
-        const userID = localStorage.getItem("userid");
         axios
         .delete(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved/${id}`)
     

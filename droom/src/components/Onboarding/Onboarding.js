@@ -1,25 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Field, withFormik, Formik } from 'formik';
+import React from 'react';
+import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup'; 
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const Onboarding = ({ errors, touched, values, status }) => {
-    const [user, setUser] = useState({
-        name: "",
-        password: "",
-        type: ""
-    });
 
-    console.log(user); 
-
-    if(status == true) {
+    if(status === true) {
         return(
             <div className="onboarding">
                 <h1>Droom</h1>
                 <h2>Find Your Droom Job!</h2>
                 <Form className="form onboarding-form">
-                    <div class="lds-ring">
+                    <div className="lds-ring">
                         <div></div>
                         <div></div>
                         <div></div>

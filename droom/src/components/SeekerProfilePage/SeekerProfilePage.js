@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup'; 
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { axiosWithAuth }  from '../Utils/axiosWithAuth';
 import SeekerNavBar from '../NavBar/SeekerNavBar';
@@ -40,14 +39,14 @@ const SeekerProfilePage = ({ errors, touched, values, status }) => {
         .catch(err => {
             console.log(err);
         })
-    }, [])
+    }, [userID])
 
     useEffect(() => {
         axios.get(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`)
             .then(res => {
                 setNumberOfSavedJobs(res.data.length);
             })
-    }, [])
+    }, [userID])
 
     return (
         <div className="seeker-profile-container" >

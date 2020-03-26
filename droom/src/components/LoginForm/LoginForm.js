@@ -1,27 +1,19 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import {withFormik, Form, Field} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const LoginForm = ({ errors, touched, values, status }) => {
-  const [user, setUser] = useState({
-    name: "",
-    password: "",
-    type: ""
-  });
 
-  console.log(user);
-
-
-  if(status == true) {
+  if(status === true) {
     return(
       <div className="loginForm">
       <h1>Droom</h1>
       <h2>Find Your Droom Job!</h2>
       
       <Form>
-        <div class="lds-ring">
+        <div className="lds-ring">
           <div></div>
           <div></div>
           <div></div>
@@ -116,7 +108,7 @@ const FormikLoginForm = withFormik({
       .post("https://droom-node-server.herokuapp.com/api/login", values) 
 
       .then(res => {
-        console.log(res);
+        console.log("login res", res);
         localStorage.setItem("token", res.data.token);
         resetForm();
         setStatus(res.data);

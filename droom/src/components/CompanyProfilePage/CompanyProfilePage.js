@@ -38,14 +38,14 @@ const CompanyProfilePage = ({ errors, touched, values, status }) => {
       .catch(err => {
         console.log(err);
     })
-  }, [])
+  }, [userID])
 
   useEffect(() => {
     axios.get(`https://droom-node-server.herokuapp.com/api/companies/${userID}/saved`)
     .then(res => {
       setSavedSeekers(res.data.length);
     })
-  }, [])
+  }, [userID])
 
   return (
     <div className="company-profile-container" >
