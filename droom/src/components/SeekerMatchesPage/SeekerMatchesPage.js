@@ -11,12 +11,11 @@ const SeekerMatchesPage = () => {
         .get(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`) 
 
         .then(res => {
-            console.log(res);
             setSavedJobs(res.data);
         })
 
         .catch(err => {
-            console.log(err);
+
         })
     }, [userID]);
 
@@ -30,11 +29,11 @@ const SeekerMatchesPage = () => {
         .delete(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved/${id}`)
     
         .then(res => {
-            console.log(res);
+
         }) 
     
         .catch(err => {
-            console.log(err.message);
+
         })
     }
 

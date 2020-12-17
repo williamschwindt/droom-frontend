@@ -6,20 +6,16 @@ const SeekerMainUI = () => {
     const [jobs, setJobs] = useState([]);
     const [ savedJobs, setSavedJobs ] = useState(0);
 
-    console.log("ls", localStorage)
-
     useEffect(() => {
         axios
         .get("https://droom-node-server.herokuapp.com/api/jobs")
 
         .then(res => {
-            console.log(res);
             setJobs(res.data);
             findNumberOfSavedJobs();
         })
 
         .catch(err => {
-            console.log(err);
         })
     }, [])
 
@@ -40,13 +36,11 @@ const SeekerMainUI = () => {
         .post(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`, theSavedJob)
     
         .then(res => {
-            console.log(res);
             findNumberOfSavedJobs();
-            
         }) 
     
         .catch(err => {
-            console.log(err.message);
+
         })
     }
 

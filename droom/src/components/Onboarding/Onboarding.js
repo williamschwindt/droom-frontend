@@ -96,15 +96,12 @@ const FormikOnboarding = withFormik({
     }),
 
     handleSubmit(values, { resetForm, setStatus, props }) {
-        console.log("Form Values ", values);
-
         setStatus(true);
 
         axios
             .post("https://droom-node-server.herokuapp.com/api/register", values) 
 
             .then(res => {
-                console.log(res.data);
                 resetForm();
                 setStatus(res.data);
                 props.history.push('/loginform');

@@ -32,12 +32,11 @@ const SeekerProfilePage = ({ errors, touched, values, status }) => {
         .get(`https://droom-node-server.herokuapp.com/api/seekers/${userID}`)
 
         .then(res => {
-            console.log(res);
             setSeeker(res.data);
         })
 
         .catch(err => {
-            console.log(err);
+
         })
     }, [userID])
 
@@ -101,21 +100,18 @@ const FormikSeekerProfilePage = withFormik({
     }),
 
     handleSubmit(values, { resetForm, setStatus }) {
-        console.log("Seeker form values ", values);
-
         const userID = localStorage.getItem("userid");
         axiosWithAuth()
         .put(`https://droom-node-server.herokuapp.com/api/seekers/${userID}`, values)
 
         .then(res => {
-            console.log(res);
             setStatus(true);
             setStatus(res.data);
             resetForm();
         })
 
         .catch(err => {
-            console.log(err);
+
         })
     }
 

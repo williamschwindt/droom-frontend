@@ -4,7 +4,6 @@ import CompanyNavBar from '../NavBar/CompanyNavBar';
 
 const CompanyMatchesPage = () => {
   const [savedSeekers, setSavedSeekers] = useState([])
-  console.log(savedSeekers);
 
   useEffect(() => {
       const userID = localStorage.getItem("userid");
@@ -12,12 +11,11 @@ const CompanyMatchesPage = () => {
       .get(`https://droom-node-server.herokuapp.com/api/companies/${userID}/saved`)
 
       .then(res => {
-          console.log(res);
           setSavedSeekers(res.data);
       })
 
       .catch(err => {
-          console.log(err);
+
       })
   }, []);
 
@@ -32,11 +30,11 @@ const CompanyMatchesPage = () => {
       .delete(`https://droom-node-server.herokuapp.com/api/companies/${userID}/saved/${id}`)
 
       .then(res => {
-          console.log(res);
+
       }) 
 
       .catch(err => {
-          console.log(err.message);
+
       })
   }
 

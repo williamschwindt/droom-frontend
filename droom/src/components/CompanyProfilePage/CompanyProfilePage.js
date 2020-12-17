@@ -31,12 +31,11 @@ const CompanyProfilePage = ({ errors, touched, values, status }) => {
       .get(`https://droom-node-server.herokuapp.com/api/companies/${userID}`)
 
       .then(res => {
-        console.log(res);
         setCompany(res.data);
     })
 
       .catch(err => {
-        console.log(err);
+
     })
   }, [userID])
 
@@ -95,21 +94,17 @@ const CompanyProfilePage = ({ errors, touched, values, status }) => {
     }),
 
     handleSubmit(values, { resetForm, setStatus}) {
-      console.log("Company form values", values);
-
       const LS = localStorage.getItem("userid");
       axiosWithAuth()
         .put(`https://droom-node-server.herokuapp.com/api/companies/${LS}`, values)
 
         .then(res => {
-          console.log(res);
           setStatus(true);
           setStatus(res.data);
           resetForm();
         })
 
         .catch(err => {
-          console.log(err);
         })
     }
 

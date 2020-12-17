@@ -100,15 +100,12 @@ const FormikLoginForm = withFormik({
 
 
   handleSubmit(values, {resetForm, setStatus, props}) {
-    console.log("Submitting form:", values);
-
     setStatus(true);
 
     axios
       .post("https://droom-node-server.herokuapp.com/api/login", values) 
 
       .then(res => {
-        console.log("login res", res);
         localStorage.setItem("token", res.data.token);
         resetForm();
         setStatus(res.data);

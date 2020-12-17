@@ -6,20 +6,17 @@ const CompanyMainUI = () => {
   const [seekers, setSeekers] = useState([]);
   const [savedSeekers, setSavedSeekers] = useState(0);
 
-  console.log(seekers);
-
   useEffect(() => {
     axios
       .get("https://droom-node-server.herokuapp.com/api/seekers")
 
       .then(res => {
-        console.log(res);
         setSeekers(res.data);
         findNumberOfSavedSeekers();
       })
 
       .catch(err => {
-        console.log(err);
+
       })
   }, [])
 
@@ -27,9 +24,7 @@ const CompanyMainUI = () => {
 
   const ClickHandler = (e) => {
     const seekerID = e.target.value;
-    console.log(seekerID);
     const theSeeker = seekers[seekerID - 299];
-    console.log(theSeeker);
 
     const savedSeeker = {
       seeker_id: theSeeker.id,
@@ -41,11 +36,9 @@ const CompanyMainUI = () => {
     .post(`https://droom-node-server.herokuapp.com/api/companies/${userID}/saved`, savedSeeker)
 
     .then(res => {
-      console.log(res);
       findNumberOfSavedSeekers();
     })
     .catch(err => {
-      console.log(err.message);
     })
   }  
 
