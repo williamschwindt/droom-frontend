@@ -24,11 +24,11 @@ const CompanyProfilePage = ({ errors, touched, values, status }) => {
       status && setCompany(status);
     }, [status]);
 
-    const userID = localStorage.getItem("userid");
+    const companyId = localStorage.getItem("companyid");
 
     useEffect(() => {
       axios 
-      .get(`https://droom-node-server.herokuapp.com/api/companies/${userID}`)
+      .get(`https://droom-node-server.herokuapp.com/api/companies/${companyId}`)
 
       .then(res => {
         setCompany(res.data);
@@ -37,14 +37,14 @@ const CompanyProfilePage = ({ errors, touched, values, status }) => {
       .catch(err => {
 
     })
-  }, [userID])
+  }, [companyId])
 
   useEffect(() => {
-    axios.get(`https://droom-node-server.herokuapp.com/api/companies/${userID}/saved`)
+    axios.get(`https://droom-node-server.herokuapp.com/api/companies/${companyId}/saved`)
     .then(res => {
       setSavedSeekers(res.data.length);
     })
-  }, [userID])
+  }, [companyId])
 
   return (
     <div className="company-profile-container" >
@@ -94,7 +94,7 @@ const CompanyProfilePage = ({ errors, touched, values, status }) => {
     }),
 
     handleSubmit(values, { resetForm, setStatus}) {
-      const LS = localStorage.getItem("userid");
+      const LS = localStorage.getItem("companyid");
       axiosWithAuth()
         .put(`https://droom-node-server.herokuapp.com/api/companies/${LS}`, values)
 

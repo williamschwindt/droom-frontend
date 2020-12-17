@@ -20,7 +20,7 @@ const CompanyMainUI = () => {
       })
   }, [])
 
-  const userID = localStorage.getItem("userid");
+  const companyId = localStorage.getItem("companyid");
 
   const ClickHandler = (e) => {
     const seekerID = e.target.value;
@@ -33,7 +33,7 @@ const CompanyMainUI = () => {
     };
 
     axios
-    .post(`https://droom-node-server.herokuapp.com/api/companies/${userID}/saved`, savedSeeker)
+    .post(`https://droom-node-server.herokuapp.com/api/companies/${companyId}/saved`, savedSeeker)
 
     .then(res => {
       findNumberOfSavedSeekers();
@@ -52,7 +52,7 @@ const CompanyMainUI = () => {
   }
 
   const findNumberOfSavedSeekers = () => {
-    axios.get(`https://droom-node-server.herokuapp.com/api/companies/${userID}/saved`)
+    axios.get(`https://droom-node-server.herokuapp.com/api/companies/${companyId}/saved`)
     .then(res => {
       setSavedSeekers(res.data.length);
     })

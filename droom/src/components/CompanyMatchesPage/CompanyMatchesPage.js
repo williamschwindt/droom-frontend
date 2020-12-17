@@ -6,9 +6,9 @@ const CompanyMatchesPage = () => {
   const [savedSeekers, setSavedSeekers] = useState([])
 
   useEffect(() => {
-      const userID = localStorage.getItem("userid");
+      const companyId = localStorage.getItem("companyid");
       axios 
-      .get(`https://droom-node-server.herokuapp.com/api/companies/${userID}/saved`)
+      .get(`https://droom-node-server.herokuapp.com/api/companies/${companyId}/saved`)
 
       .then(res => {
           setSavedSeekers(res.data);
@@ -25,9 +25,9 @@ const CompanyMatchesPage = () => {
       let updatedList = savedSeekers.filter(seeker => seeker.seeker_id !== id);
       setSavedSeekers(updatedList); 
 
-      const userID = localStorage.getItem("userid");
+      const companyId = localStorage.getItem("companyid");
       axios
-      .delete(`https://droom-node-server.herokuapp.com/api/companies/${userID}/saved/${id}`)
+      .delete(`https://droom-node-server.herokuapp.com/api/companies/${companyId}/saved/${id}`)
 
       .then(res => {
 

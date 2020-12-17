@@ -105,7 +105,12 @@ const FormikOnboarding = withFormik({
                 resetForm();
                 setStatus(res.data);
                 props.history.push('/loginform');
-                localStorage.setItem("userid", res.data.id);
+                if (values.type === 'seeker') {
+                    localStorage.setItem("userid", res.data.id);
+                } else {
+                    localStorage.setItem("companyid", res.data.id);
+                }
+                
             })
             .catch(() => {
                 setStatus("error");
